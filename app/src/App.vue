@@ -5,11 +5,19 @@
 
 <script>
 import Header from "./components/Header.vue";
-
+import { mapActions } from "vuex";
 export default {
   name: "App",
   components: {
     Header,
+  },
+  methods: {
+    ...mapActions({
+      fetchParks: "parks/getParks",
+    }),
+  },
+  created() {
+    this.fetchParks();
   },
 };
 </script>
