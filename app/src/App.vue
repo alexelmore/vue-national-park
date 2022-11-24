@@ -31,8 +31,7 @@ export default {
     },
   },
   async created() {
-    const parks = await this.fetchParks();
-    console.log(parks);
+    await this.fetchParks();
   },
 };
 </script>
