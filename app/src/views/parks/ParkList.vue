@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-green-100 p-10 w-fit min-w-300 max-w-md">
     <h2 class="text-3xl font-bold">{{ park.fullName }}</h2>
     <img
       class="w-72 m-auto mt-10"
