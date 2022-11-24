@@ -1,23 +1,38 @@
 <template>
   <Header />
-  <div class="container">start</div>
+  <div class="container">
+    <HubPage :loading="this.isLoading" />
+  </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
-import { mapActions } from "vuex";
+import HubPage from "./views/HubPage.vue";
 export default {
   name: "App",
   components: {
     Header,
+    HubPage,
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
   },
   methods: {
-    ...mapActions({
-      fetchParks: "parks/getParks",
-    }),
+    async fetchParks() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("parks/getParks");
+        this.isLoading = false;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
-  created() {
-    this.fetchParks();
+  async created() {
+    const parks = await this.fetchParks();
+    console.log(parks);
   },
 };
 </script>

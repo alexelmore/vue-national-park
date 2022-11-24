@@ -1,12 +1,17 @@
-<template></template>
+<template>
+  <div v-if="loading"><BaseSpinner /></div>
+  <div v-else>coaches</div>
+</template>
 
 <script>
 export default {
   name: "HubPage",
-  data() {
-    return {
-      loading: true,
-    };
+
+  props: {
+    loading: {
+      type: Boolean,
+      default: true,
+    },
   },
 };
 </script>
