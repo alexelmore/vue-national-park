@@ -1,8 +1,8 @@
 export default {
 
-    // Actions that are all specific to parks items and preform any asynchronous actions like API requests
-
+    // Async method that reaches out to the NPS Endpoint to get all the National Parks
     async getParks(context) {
+
         // Base Endpoint URL
         const baseUrl = `https://developer.nps.gov/api/v1/parks?api_key=`
 

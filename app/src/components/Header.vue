@@ -1,7 +1,7 @@
 <template>
   <header class="text-center bg-green-800 text-white p-4 mb-10">
     <div class="text-3xl md:text-5xl mb-3">
-      <i class="fa-solid fa-otter"></i>
+      <i class="fa-sharp fa-solid fa-leaf"></i>
       National Park's App
     </div>
     <p>

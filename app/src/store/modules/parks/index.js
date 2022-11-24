@@ -1,6 +1,7 @@
 // Import all park Vuex modules
 import parksActions from './actions'
 import parksMutations from './mutations'
+import parksGetters from './getters'
 // Export park state so rest of app can utilize it
 export default {
 
@@ -14,5 +15,6 @@ export default {
         }
     },
     actions: parksActions,
-    mutations: parksMutations
+    mutations: parksMutations,
+    getters: parksGetters
 }
