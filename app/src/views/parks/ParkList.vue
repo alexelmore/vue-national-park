@@ -1,12 +1,12 @@
 <template>
-  <div class="bg-green-100 p-10 w-fit min-w-300 max-w-md">
-    <h2 class="text-3xl font-bold">{{ park.fullName }}</h2>
+  <BaseCard>
+    <h2 class="text-neutral-50 text-3xl font-bold">{{ park.fullName }}</h2>
     <img
       class="w-72 m-auto mt-10"
       :src="park.images[0].url"
       :alt="park.images[0].alt"
     />
-  </div>
+  </BaseCard>
 </template>
 
 <script>
