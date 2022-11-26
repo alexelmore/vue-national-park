@@ -7,6 +7,7 @@ import './assets/tailwind.css'
 const BaseSpinner = defineAsyncComponent(() => import('./components/base/BaseSpinner.vue'))
 const BaseCard = defineAsyncComponent(() =>
     import('./components/base/BaseCard.vue'))
+const BaseButton = defineAsyncComponent(() => import('./components/base/BaseButton.vue'))
 
 // Vue app initialization
 const app = createApp(App);
@@ -17,6 +18,7 @@ app.use(store);
 // Add the below as Global app wide components
 app.component('BaseSpinner', BaseSpinner)
 app.component('BaseCard', BaseCard)
+app.component('BaseButton', BaseButton)
 
 // Mount our Vue app to the DOM
 app.mount('#app')

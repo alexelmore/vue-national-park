@@ -1,18 +1,21 @@
 <template>
   <Header />
-  <div class="container">
+  <div class="container flex justify-evenly">
+    <SideBar />
     <HubPage :loading="this.isLoading" />
   </div>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
+import Header from "./components/ui/Header.vue";
 import HubPage from "./views/HubPage.vue";
+import SideBar from "./components/ui/SideBar.vue";
 export default {
   name: "App",
   components: {
     Header,
     HubPage,
+    SideBar,
   },
   data() {
     return {
