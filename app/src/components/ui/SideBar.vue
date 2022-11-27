@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar" :style="{ width: width + 'px' }">
+  <div class="sidebar">
     <ParkFilter @filterParks="filterTags" @clearSelections="clearSelections" />
   </div>
 </template>
@@ -8,7 +8,7 @@
 import ParkFilter from "../../views/parks/ParkFilter.vue";
 import { mapGetters } from "vuex";
 export default {
-  name: "SideBare",
+  name: "SideBar",
   components: {
     ParkFilter,
   },
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     filterTags(parks) {
-      console.log(parks);
+      this.$emit("filterTags", parks);
     },
     clearSelections() {
       this.$emit("clearSelections", []);
