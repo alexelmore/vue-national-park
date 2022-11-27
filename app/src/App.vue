@@ -1,7 +1,6 @@
 <template>
   <Header />
-  <div class="container flex justify-evenly">
-    <SideBar />
+  <div class="container w-full flex justify-center">
     <HubPage :loading="this.isLoading" />
   </div>
 </template>
@@ -9,13 +8,12 @@
 <script>
 import Header from "./components/ui/Header.vue";
 import HubPage from "./views/HubPage.vue";
-import SideBar from "./components/ui/SideBar.vue";
+
 export default {
   name: "App",
   components: {
     Header,
     HubPage,
-    SideBar,
   },
   data() {
     return {

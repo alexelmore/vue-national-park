@@ -10,16 +10,16 @@
     <div class="filter-items">
       <div class="filter-toggle">
         <input
-          name="free"
-          value="free"
+          name="Free"
+          value="Free"
           class="filter-tgl tgl-light"
-          id="free"
+          id="Free"
           type="checkbox"
           v-model="goFree"
           @change="$emit('filterParks', this.combinedTags)"
         />
-        <label class="tgl-btn" for="free"></label>
-        <label class="tgl-btn" for="free">
+        <label class="tgl-btn" for="Free"></label>
+        <label class="tgl-btn" for="Free">
           <h4>Free Admission</h4>
         </label>
       </div>
@@ -30,69 +30,69 @@
           <div>
             <input
               type="checkbox"
-              id="shopping"
-              name="shopping"
-              value="shopping"
+              id="Shopping"
+              name="Shopping"
+              value="Shopping"
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="shopping"> Shopping</label>
+            <label for="Shopping"> Shopping</label>
           </div>
           <div>
             <input
               type="checkbox"
-              id="camping"
-              name="camping"
-              value="camping"
+              id="Camping"
+              name="Camping"
+              value="Camping"
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="camping"> Camping</label>
+            <label for="Camping"> Camping</label>
           </div>
           <div>
             <input
               type="checkbox"
-              id="biking"
-              name="biking"
-              value="biking"
+              id="Biking"
+              name="Biking"
+              value="Biking"
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="biking"> Biking</label>
+            <label for="Biking"> Biking</label>
           </div>
           <div>
             <input
               type="checkbox"
-              id="swimming"
-              name="swimming"
-              value="swimming"
+              id="Swimming"
+              name="Swimming"
+              value="Swimming"
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="swimming"> Swimming</label>
+            <label for="Swimming"> Swimming</label>
           </div>
 
           <div>
             <input
               type="checkbox"
-              id="hiking"
-              name="hiking"
-              value="hiking"
+              id="Hiking"
+              name="Hiking"
+              value="Hiking"
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="hiking"> Hiking</label>
+            <label for="Hiking"> Hiking</label>
           </div>
           <div>
             <input
               type="checkbox"
-              id="fishing"
-              name="fishing"
-              value="fishing"
+              id="Fishing"
+              name="Fishing"
+              value="Fishing"
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="fishing"> Fishing</label>
+            <label for="Fishing"> Fishing</label>
           </div>
         </span>
       </BaseCard>
@@ -117,7 +117,7 @@ export default {
     combinedTags() {
       let arr = [...this.searchTags];
       if (this.goFree === true) {
-        arr.push("free");
+        arr.push("Free");
       }
 
       return arr;

@@ -6,10 +6,16 @@
 
 <script>
 import ParkFilter from "../../views/parks/ParkFilter.vue";
+import { mapGetters } from "vuex";
 export default {
   name: "SideBare",
   components: {
     ParkFilter,
+  },
+  computed: {
+    ...mapGetters({
+      parks: "parks/parks",
+    }),
   },
   methods: {
     filterTags(parks) {
