@@ -59,7 +59,6 @@ export default {
         }
 
         // Todo: add in another condition for all other non "Free" tags
-
         return selectedParks;
       } else {
         selectedParks = [...this.parks];

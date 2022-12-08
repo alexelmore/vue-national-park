@@ -24,6 +24,12 @@ export default {
             if (request.ok && request.status === 200) {
                 const copy = Object.assign({}, data)
                 const parks = copy.data;
+                for (let i in copy.data) {
+                    parks[i].actNames = []
+                    parks[i].activities.map((act) => {
+                        parks[i].actNames.push(act.name)
+                    })
+                }
                 context.commit('initParks', parks)
             } else {
                 throw new Error('Something went wrong')
