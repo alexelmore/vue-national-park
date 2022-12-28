@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loading"><BaseSpinner /></div>
+  <div v-if="isLoading"><BaseSpinner /></div>
   <div class="flex w-4/5 justify-evenly" v-else>
     <SideBar
       @filterTags="initialParksList"
@@ -23,6 +23,7 @@ export default {
       currentParksList: [],
       selectedActivities: [],
       freeAdmission: false,
+      isLoading: false,
     };
   },
 
@@ -31,14 +32,18 @@ export default {
     SideBar,
   },
 
-  props: {
-    loading: {
-      type: Boolean,
-      default: true,
-    },
-  },
-
   methods: {
+    // Async method that dispatches the getParks action, calling the National Park endpoint
+    async fetchParks() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch("parks/getParks");
+        this.isLoading = false;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     // Method that sets the activities data property to the array of park tags, which gets emitted up from the SideBar component
     filterTags(parkTags) {
       this.activities = [...parkTags];
@@ -107,6 +112,11 @@ export default {
       }
       return parkArray;
     },
+  },
+
+  async created() {
+    // Once component is created, call fetchParks method
+    await this.fetchParks();
   },
 };
 </script>

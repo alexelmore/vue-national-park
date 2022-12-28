@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 // Load Below components and their paths only when they are needed
-const ParkItem = () => import('./views/parks/ParkItem.vue');
-const ParkList = () => import('./views/parks/ParkList.vue')
+const ParkDetail = () => import('./views/parks/ParkDetail.vue');
+const HubPage = () => import('./views/HubPage.vue')
 const NotFound = () => import('./views/NotFound.vue');
 
 // Init and store a reference to Vue's Router object in a constant
@@ -18,11 +18,11 @@ const router = createRouter({
         },
 
         {
-            path: '/parks', component: ParkList
+            path: '/parks', component: HubPage
         },
 
         {
-            path: '/parks/:id', props: true, component: ParkItem
+            path: '/parks/:id', props: true, component: ParkDetail
         },
 
         {

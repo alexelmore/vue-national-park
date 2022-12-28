@@ -1,4 +1,5 @@
 import { createApp, defineAsyncComponent } from 'vue'
+import router from './router'
 import App from './App.vue'
 import store from './store/index.js'
 import './assets/tailwind.css'
@@ -12,8 +13,9 @@ const BaseButton = defineAsyncComponent(() => import('./components/base/BaseButt
 // Vue app initialization
 const app = createApp(App);
 
-// Inject Vue store into our Vue App
+// Inject Vue store and router into our Vue App
 app.use(store);
+app.use(router)
 
 // Add the below as Global app wide components
 app.component('BaseSpinner', BaseSpinner)

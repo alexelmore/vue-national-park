@@ -1,38 +1,15 @@
 <template>
   <Header />
-  <div class="container w-full flex justify-center">
-    <HubPage :loading="this.isLoading" />
-  </div>
+  <router-view />
 </template>
 
 <script>
 import Header from "./components/ui/Header.vue";
-import HubPage from "./views/HubPage.vue";
 
 export default {
   name: "App",
   components: {
     Header,
-    HubPage,
-  },
-  data() {
-    return {
-      isLoading: false,
-    };
-  },
-  methods: {
-    async fetchParks() {
-      this.isLoading = true;
-      try {
-        await this.$store.dispatch("parks/getParks");
-        this.isLoading = false;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
-  async created() {
-    await this.fetchParks();
   },
 };
 </script>
