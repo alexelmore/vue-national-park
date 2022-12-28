@@ -1,8 +1,12 @@
 <template>
   <div v-if="loading"><BaseSpinner /></div>
   <div class="flex w-4/5 justify-evenly" v-else>
-    <SideBar @filterTags="filterTags" @clearSelections="clearSelections" />
-    <ParkList :parks="filteredParks" />
+    <SideBar
+      @filterTags="initialParksList"
+      @clearSelections="clearSelections"
+      @freeAdmission="updateAdmissionStatus"
+    />
+    <ParkList :parks="finalParksList" />
   </div>
 </template>
 
@@ -15,7 +19,10 @@ export default {
 
   data() {
     return {
-      tags: [],
+      activities: [],
+      currentParksList: [],
+      selectedActivities: [],
+      freeAdmission: false,
     };
   },
 
@@ -32,11 +39,46 @@ export default {
   },
 
   methods: {
+    // Method that sets the activities data property to the array of park tags, which gets emitted up from the SideBar component
     filterTags(parkTags) {
-      this.tags = [...parkTags];
+      this.activities = [...parkTags];
     },
+
+    // Method that sets the initialParksList data property to an array of parks, which gets emitted up from the SideBar component
+    initialParksList(array) {
+      this.activities = [...array];
+      this.currentParksList = [];
+
+      this.parks.forEach((park) => {
+        const listedActivities = [];
+
+        for (const activity in park.actNames) {
+          listedActivities.push(park.actNames[activity]);
+        }
+        const addPark = this.includesAll(listedActivities, this.activities);
+
+        if (addPark && this.activities.length) {
+          this.currentParksList.push(park);
+        }
+      });
+    },
+
+    // Method that checks if the array of parks (first argument) includes all elements in the second array (second argument), and returns a corrilating bool.
+    includesAll(arr, values) {
+      return values.every((v) => arr.includes(v));
+    },
+
+    // Method that resets all the data propeties back to their initial values
     clearSelections() {
-      this.tags = [];
+      this.activities = [];
+      this.selectedActivities = [];
+      this.currentParksList = [];
+      this.freeAdmission = false;
+    },
+
+    // Method that flips the freeAdmission data boolean property based on the admission bool value that gets emitted up from the SideBar component.
+    updateAdmissionStatus(admission) {
+      this.freeAdmission = admission;
     },
   },
 
@@ -45,25 +87,25 @@ export default {
       parks: "parks/parks",
     }),
 
-    filteredParks() {
-      let selectedParks = [];
-      if (this.tags.length) {
-        if (this.tags.includes("Free")) {
-          selectedParks = [
-            ...this.parks.filter((park) => {
-              if (park.entranceFees[0].cost === "0.00") {
-                return park;
-              }
-            }),
-          ];
-        }
-
-        // Todo: add in another condition for all other non "Free" tags
-        return selectedParks;
+    // Computed property that serves as the final list of parks that gets displayed in the UI to the user
+    finalParksList() {
+      let parkArray = [];
+      if (this.freeAdmission && this.currentParksList.length) {
+        parkArray = this.currentParksList.filter((park) => {
+          if (park.entranceFees[0].cost === "0.00") {
+            return park;
+          }
+        });
+      } else if (this.freeAdmission && !this.currentParksList.length) {
+        parkArray = this.parks.filter((park) => {
+          if (park.entranceFees[0].cost === "0.00") {
+            return park;
+          }
+        });
       } else {
-        selectedParks = [...this.parks];
-        return selectedParks;
+        parkArray = [...this.currentParksList];
       }
+      return parkArray;
     },
   },
 };

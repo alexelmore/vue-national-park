@@ -1,6 +1,10 @@
 <template>
   <div class="sidebar">
-    <ParkFilter @filterParks="filterTags" @clearSelections="clearSelections" />
+    <ParkFilter
+      @filterParks="filterTags"
+      @clearSelections="clearSelections"
+      @freeAdmission="freeAdmission"
+    />
   </div>
 </template>
 
@@ -18,11 +22,18 @@ export default {
     }),
   },
   methods: {
+    /* The below methods emit their correlating data properties, which they receive from the ParksFilter component, up to the HubPage component */
+
     filterTags(parks) {
       this.$emit("filterTags", parks);
     },
+
     clearSelections() {
       this.$emit("clearSelections", []);
+    },
+
+    freeAdmission(admission) {
+      this.$emit("freeAdmission", admission);
     },
   },
 };

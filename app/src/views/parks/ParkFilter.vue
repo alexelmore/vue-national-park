@@ -16,7 +16,7 @@
           id="Free"
           type="checkbox"
           v-model="goFree"
-          @change="$emit('filterParks', this.combinedTags)"
+          @change="$emit('freeAdmission', this.goFree)"
         />
         <label class="tgl-btn" for="Free"></label>
         <label class="tgl-btn" for="Free">
@@ -116,11 +116,11 @@ export default {
     }),
     combinedTags() {
       let arr = [...this.searchTags];
-      if (this.goFree === true) {
-        arr.push("Free");
-      }
-
       return arr;
+    },
+
+    isFree() {
+      return this.goFree;
     },
   },
   props: {
