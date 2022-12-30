@@ -26,8 +26,7 @@ export default {
 
   methods: {
     goToPark(id) {
-      console.log(`${this.$route.path}/${id}`);
-      this.$router.replace(`${this.$route.path}/${id}`);
+      this.$router.push(`${this.$route.path}/${id}`);
     },
   },
 };

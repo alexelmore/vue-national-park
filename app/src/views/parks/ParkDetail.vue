@@ -1,5 +1,14 @@
 <template>
-  <BaseCard>{{ park.fullName }}</BaseCard>
+  <BaseCard>
+    <div class="bg-amber-200 p-8">
+      <h2 class="text-black text-xl">{{ park.fullName }}</h2>
+      <p>{{ park.description }}</p>
+      <br />
+      <div v-for="img in park.images" :key="img.alt">
+        <img :src="img.url" :alt="img.alt" /> <br />
+      </div>
+    </div>
+  </BaseCard>
 </template>
 
 <script>
