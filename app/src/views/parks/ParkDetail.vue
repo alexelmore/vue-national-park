@@ -4,16 +4,14 @@
       <h2 class="text-black text-xl">{{ park.fullName }}</h2>
       <p>{{ park.description }}</p>
       <br />
-      <div v-for="img in park.images" :key="img.alt">
-        <img :src="img.url" :alt="img.alt" /> <br />
-      </div>
+      <ParkImages :park="park" />
     </div>
   </BaseCard>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-
+import ParkImages from "./ParkImages.vue";
 export default {
   name: "ParkDetail",
 
@@ -29,6 +27,11 @@ export default {
       park: "",
     };
   },
+
+  components: {
+    ParkImages,
+  },
+
   computed: {
     ...mapGetters({
       parkMatch: "parks/getParkById",

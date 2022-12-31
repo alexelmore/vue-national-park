@@ -1,6 +1,7 @@
 <template>
   <div class="sidebar">
     <ParkFilter
+      class="flex flex-col items-stretch"
       @filterParks="filterTags"
       @clearSelections="clearSelections"
       @freeAdmission="freeAdmission"
