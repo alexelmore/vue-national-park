@@ -1,7 +1,7 @@
 <template>
-  <BaseCard v-for="img in park.images" :key="img.alt">
-    <img :src="img.url" :alt="img.alt" /> <br />
-  </BaseCard>
+  <lazy-component v-for="img in park.images" :key="img.alt">
+    <img :src="img.url" :alt="img.alt" height="300" /> <br />
+  </lazy-component>
 </template>
 
 <script>

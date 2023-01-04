@@ -1,11 +1,13 @@
 <template>
   <BaseCard class="card">
     <h2 class="text-neutral-50 text-3xl font-bold">{{ park.fullName }}</h2>
-    <img
-      class="w-72 m-auto mt-10"
-      :src="park.images[0].url"
-      :alt="park.images[0].alt"
-    />
+    <lazy-component>
+      <img
+        class="w-72 m-auto mt-10"
+        :src="park.images[0].url"
+        :alt="park.images[0].alt"
+      />
+    </lazy-component>
   </BaseCard>
 </template>
 
