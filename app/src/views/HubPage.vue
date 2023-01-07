@@ -108,7 +108,9 @@ export default {
           }
         });
       } else {
-        parkArray = [...this.currentParksList];
+        parkArray = this.currentParksList.length
+          ? [...this.currentParksList]
+          : [...this.parks];
       }
       return parkArray;
     },

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar min-w-[35%]">
     <ParkFilter
       class="flex flex-col items-stretch"
       @filterParks="filterTags"
