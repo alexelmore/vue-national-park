@@ -37,5 +37,9 @@ export default {
         } catch (error) {
             console.log(error)
         }
+    },
+
+    setUserLocation(context, position) {
+        context.commit('setUserLocation', position)
     }
 }

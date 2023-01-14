@@ -11,7 +11,9 @@ export default {
     // State object that contains,combines and returns all state that is specific to the parks store module.
     state() {
         return {
-            parks: []
+            parks: [],
+            locationGranted: false,
+            coords: { latitude: null, longitude: null }
         }
     },
     actions: parksActions,

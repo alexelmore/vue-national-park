@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import ParkList from "./parks/ParkList.vue";
 import SideBar from "../components/ui/SideBar.vue";
 export default {
@@ -24,6 +24,10 @@ export default {
       selectedActivities: [],
       freeAdmission: false,
       isLoading: false,
+      location: {
+        latitude: null,
+        longitude: null,
+      },
     };
   },
 
@@ -33,6 +37,10 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      userLocation: "parks/setUserLocation",
+    }),
+
     // Async method that dispatches the getParks action, calling the National Park endpoint
     async fetchParks() {
       this.isLoading = true;
@@ -85,6 +93,16 @@ export default {
     updateAdmissionStatus(admission) {
       this.freeAdmission = admission;
     },
+
+    success(pos) {
+      this.location.latitude = pos.coords.latitude;
+      this.location.longitude = pos.coords.longitude;
+      this.userLocation(this.location);
+    },
+
+    error(err) {
+      console.log(err);
+    },
   },
 
   computed: {
@@ -119,6 +137,9 @@ export default {
   async created() {
     // Once component is created, call fetchParks method
     await this.fetchParks();
+
+    // Request geolocation for user
+    navigator.geolocation.getCurrentPosition(this.success, this.error);
   },
 };
 </script>
