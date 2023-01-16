@@ -4,7 +4,7 @@
     <BaseCard
       ref="myDropDown"
       @click.stop
-      class="!my-2 !w-48 text-left !p-4"
+      class="!my-2 !w-60 text-left !p-4"
       :class="{ hidden: menuClosed }"
     >
       <div>
@@ -16,7 +16,18 @@
           v-model="sortType"
           @change="$emit('sortType', this.sortType)"
         />
-        <label for="alphabetical"> Alphabetical</label>
+        <label for="alphabetical"> Alphabetical Order: A to Z</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="reverseAlpha"
+          name="reverseAlpha"
+          value="reverseAlpha"
+          v-model="sortType"
+          @change="$emit('sortType', this.sortType)"
+        />
+        <label for="reverseAlpha"> Descending Alphabetical Order: Z to A</label>
       </div>
       <div>
         <input

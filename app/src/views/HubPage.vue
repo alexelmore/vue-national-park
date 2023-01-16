@@ -117,9 +117,20 @@ export default {
     // Method that listens to the emitted sort type from the SortMenu component and than sorts the currentParkList array accordingly
     selectedSort(type) {
       if (type === "alphabetical") {
-        this.currentParksList.sort((a, b) => {
-          return a.name.localeCompare(b.name);
-        });
+        // Alphabetical sort
+        this.currentParksList.length
+          ? this.currentParksList.sort((a, b) => {
+              return a.name.localeCompare(b.name);
+            })
+          : this.parks.sort((a, b) => {
+              return a.name.localeCompare(b.name);
+            });
+      } else if (type === "reverseAlpha") {
+        // Reverse Alphabetical sort
+        console.log(type);
+        this.currentParksList.length
+          ? this.currentParksList.sort().reverse()
+          : this.parks.sort().reverse();
       } else {
         // This is where the "nearest park to me" sorting logic will be
         console.log(type);
