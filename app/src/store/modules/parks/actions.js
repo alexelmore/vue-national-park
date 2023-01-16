@@ -39,6 +39,7 @@ export default {
         }
     },
 
+    // Action that call the setUserLocation mutation, passing it the user's coordinate
     setUserLocation(context, position) {
         context.commit('setUserLocation', position)
     }

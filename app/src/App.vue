@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <router-view class="w-9/12 m-auto justify-evenly" />
+  <router-view class="w-9/12 m-auto" />
 </template>
 
 <script>

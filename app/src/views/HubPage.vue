@@ -1,12 +1,15 @@
 <template>
   <div v-if="isLoading"><BaseSpinner /></div>
-  <div class="flex w-4/5 justify-evenly" v-else>
-    <SideBar
-      @filterTags="initialParksList"
-      @clearSelections="clearSelections"
-      @freeAdmission="updateAdmissionStatus"
-    />
-    <ParkList :parks="finalParksList" />
+  <div v-else>
+    <div class="flex justify-evenly">
+      <SideBar
+        @filterTags="initialParksList"
+        @clearSelections="clearSelections"
+        @freeAdmission="updateAdmissionStatus"
+      />
+      <ParkList :parks="finalParksList" />
+      <SortMenu @sortType="selectedSort" />
+    </div>
   </div>
 </template>
 
@@ -14,6 +17,7 @@
 import { mapGetters, mapActions } from "vuex";
 import ParkList from "./parks/ParkList.vue";
 import SideBar from "../components/ui/SideBar.vue";
+import SortMenu from "../components/ui/SortMenu.vue";
 export default {
   name: "HubPage",
 
@@ -28,12 +32,14 @@ export default {
         latitude: null,
         longitude: null,
       },
+      locationEnabled: false,
     };
   },
 
   components: {
     ParkList,
     SideBar,
+    SortMenu,
   },
 
   methods: {
@@ -94,14 +100,30 @@ export default {
       this.freeAdmission = admission;
     },
 
+    // Method that passess the user's coordinates to the setUserLocation action
     success(pos) {
+      this.locationEnabled = true;
       this.location.latitude = pos.coords.latitude;
       this.location.longitude = pos.coords.longitude;
       this.userLocation(this.location);
     },
 
+    // Method that fires if and when there is an error when trying to get the user's coordinates
     error(err) {
       console.log(err);
+      this.locationEnabled = false;
+    },
+
+    // Method that listens to the emitted sort type from the SortMenu component and than sorts the currentParkList array accordingly
+    selectedSort(type) {
+      if (type === "alphabetical") {
+        this.currentParksList.sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        });
+      } else {
+        // This is where the "nearest park to me" sorting logic will be
+        console.log(type);
+      }
     },
   },
 

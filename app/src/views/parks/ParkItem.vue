@@ -1,5 +1,5 @@
 <template>
-  <BaseCard class="card">
+  <BaseCard class="card !w-9/12">
     <h2 class="text-neutral-50 text-3xl font-bold">{{ park.fullName }}</h2>
     <lazy-component>
       <img
