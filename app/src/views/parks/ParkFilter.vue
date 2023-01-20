@@ -1,8 +1,14 @@
 <template>
   <div>
     <div class="filter-header">
-      <h2 class="filter-title">Filter Parks</h2>
-      <BaseButton @click="clearSelections" class="filter-cta"
+      <h2
+        class="filter-title flex items-center font-bold !text-green-800 text-xl"
+      >
+        Filter Parks
+      </h2>
+      <BaseButton
+        @click="clearSelections"
+        class="filter-cta font-bold text-white"
         >Clear Filters</BaseButton
       >
     </div>
@@ -20,12 +26,12 @@
         />
         <label class="tgl-btn" for="Free"></label>
         <label class="tgl-btn" for="Free">
-          <h4>Free Admission</h4>
+          <h4 class="!text-green-800 font-bold text-xl">Free Admission</h4>
         </label>
       </div>
 
-      <BaseCard>
-        <h2>Park Activities</h2>
+      <BaseCard class="border-solid border-2 border-black">
+        <h2 class="font-bold text-white">Park Activities</h2>
         <span class="filter-option">
           <div>
             <input
@@ -36,7 +42,9 @@
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="Shopping"> Shopping</label>
+            <label class="font-bold text-white ml-2" for="Shopping">
+              Shopping</label
+            >
           </div>
           <div>
             <input
@@ -47,7 +55,9 @@
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="Camping"> Camping</label>
+            <label class="font-bold text-white ml-2" for="Camping">
+              Camping</label
+            >
           </div>
           <div>
             <input
@@ -58,7 +68,9 @@
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="Biking"> Biking</label>
+            <label class="font-bold text-white ml-2" for="Biking">
+              Biking</label
+            >
           </div>
           <div>
             <input
@@ -69,7 +81,9 @@
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="Swimming"> Swimming</label>
+            <label class="font-bold text-white ml-2" for="Swimming">
+              Swimming</label
+            >
           </div>
 
           <div>
@@ -81,7 +95,9 @@
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="Hiking"> Hiking</label>
+            <label class="font-bold text-white ml-2" for="Hiking">
+              Hiking</label
+            >
           </div>
           <div>
             <input
@@ -92,7 +108,9 @@
               v-model="searchTags"
               @change="$emit('filterParks', this.combinedTags)"
             />
-            <label for="Fishing"> Fishing</label>
+            <label class="font-bold text-white ml-2" for="Fishing">
+              Fishing</label
+            >
           </div>
         </span>
       </BaseCard>

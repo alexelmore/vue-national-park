@@ -36,7 +36,7 @@ a {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   font-size: inherit;
   background-color: #005a00;
-  border: 1px solid black;
+  border: 2px solid black;
   color: white;
   cursor: pointer;
   border-radius: 30px;

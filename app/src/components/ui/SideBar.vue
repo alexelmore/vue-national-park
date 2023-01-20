@@ -1,7 +1,14 @@
 <template>
   <div class="sidebar min-w-[35%]">
     <ParkFilter
-      class="flex flex-col items-stretch"
+      class="
+        flex flex-col
+        items-stretch
+        p-4
+        bg-yellow-100
+        rounded-lg
+        border-solid border-2 border-black
+      "
       @filterParks="filterTags"
       @clearSelections="clearSelections"
       @freeAdmission="freeAdmission"

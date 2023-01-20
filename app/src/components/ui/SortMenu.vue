@@ -1,10 +1,12 @@
 <template>
   <div class="dropdown block w-32">
-    <BaseButton class="!w-32" @click="initSorting">Sort By </BaseButton>
+    <BaseButton class="!w-32 font-bold text-white" @click="initSorting"
+      >Sort By
+    </BaseButton>
     <BaseCard
       ref="myDropDown"
       @click.stop
-      class="!my-2 !w-60 text-left !p-4"
+      class="!my-2 !w-60 text-left !p-4 border-solid border-2 border-black"
       :class="{ hidden: menuClosed }"
     >
       <div>
@@ -16,7 +18,9 @@
           v-model="sortType"
           @change="$emit('sortType', this.sortType)"
         />
-        <label for="alphabetical"> Order: A to Z</label>
+        <label class="font-bold text-white" for="alphabetical">
+          Order: A to Z</label
+        >
       </div>
       <div>
         <input
@@ -27,7 +31,9 @@
           v-model="sortType"
           @change="$emit('sortType', this.sortType)"
         />
-        <label for="reverseAlpha"> Order: Z to A</label>
+        <label class="font-bold text-white" for="reverseAlpha">
+          Order: Z to A</label
+        >
       </div>
       <div>
         <input
@@ -38,7 +44,9 @@
           v-model="sortType"
           @change="$emit('sortType', this.sortType)"
         />
-        <label for="distance"> Nearest To Me</label>
+        <label class="font-bold text-white" for="distance">
+          Nearest To Me</label
+        >
       </div>
     </BaseCard>
   </div>
@@ -95,14 +103,14 @@ export default {
           ],
           {
             // timing options
-            duration: 1000,
+            duration: 1002,
             iterations: 1,
             direction: "reverse",
           }
         );
         setTimeout(() => {
           this.menuClosed = !this.menuClosed;
-        }, 999);
+        }, 1000);
       }
     },
   },
