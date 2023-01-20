@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdown block">
+  <div class="dropdown block w-32">
     <BaseButton class="!w-32" @click="initSorting">Sort By </BaseButton>
     <BaseCard
       ref="myDropDown"
@@ -16,7 +16,7 @@
           v-model="sortType"
           @change="$emit('sortType', this.sortType)"
         />
-        <label for="alphabetical"> Alphabetical Order: A to Z</label>
+        <label for="alphabetical"> Order: A to Z</label>
       </div>
       <div>
         <input
@@ -27,7 +27,7 @@
           v-model="sortType"
           @change="$emit('sortType', this.sortType)"
         />
-        <label for="reverseAlpha"> Descending Alphabetical Order: Z to A</label>
+        <label for="reverseAlpha"> Order: Z to A</label>
       </div>
       <div>
         <input
@@ -54,8 +54,56 @@ export default {
     };
   },
   methods: {
-    initSorting() {
-      this.menuClosed = !this.menuClosed;
+    async initSorting() {
+      const el = this.$refs.myDropDown.$el;
+      if (el.classList.contains("hidden")) {
+        this.menuClosed = !this.menuClosed;
+        el.animate(
+          [
+            // keyframes
+            {
+              opacity: "0",
+              transform: "rotateX(70deg)",
+              transformOrigin: "top",
+            },
+            {
+              opacity: "1",
+              transform: "rotateX(0deg)",
+              transformOrigin: "top",
+            },
+          ],
+          {
+            // timing options
+            duration: 1000,
+            iterations: 1,
+          }
+        );
+      } else {
+        await el.animate(
+          [
+            // keyframes
+            {
+              opacity: "0",
+              transform: "rotateX(70deg)",
+              transformOrigin: "top",
+            },
+            {
+              opacity: "1",
+              transform: "rotateX(0deg)",
+              transformOrigin: "top",
+            },
+          ],
+          {
+            // timing options
+            duration: 1000,
+            iterations: 1,
+            direction: "reverse",
+          }
+        );
+        setTimeout(() => {
+          this.menuClosed = !this.menuClosed;
+        }, 999);
+      }
     },
   },
 };

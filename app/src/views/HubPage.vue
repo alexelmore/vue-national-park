@@ -127,7 +127,6 @@ export default {
             });
       } else if (type === "reverseAlpha") {
         // Reverse Alphabetical sort
-        console.log(type);
         this.currentParksList.length
           ? this.currentParksList.sort().reverse()
           : this.parks.sort().reverse();
