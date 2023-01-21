@@ -5,7 +5,7 @@
         flex flex-col
         items-stretch
         p-4
-        bg-yellow-100
+        bg-amber-200
         rounded-lg
         border-solid border-2 border-black
       "

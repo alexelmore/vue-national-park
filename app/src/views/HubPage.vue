@@ -45,6 +45,7 @@ export default {
   methods: {
     ...mapActions({
       userLocation: "parks/setUserLocation",
+      setParkCoords: "parks/setParkDistance",
     }),
 
     // Async method that dispatches the getParks action, calling the National Park endpoint
@@ -106,6 +107,7 @@ export default {
       this.location.latitude = pos.coords.latitude;
       this.location.longitude = pos.coords.longitude;
       this.userLocation(this.location);
+      this.setParkCoords();
     },
 
     // Method that fires if and when there is an error when trying to get the user's coordinates
@@ -131,8 +133,18 @@ export default {
           ? this.currentParksList.sort().reverse()
           : this.parks.sort().reverse();
       } else {
-        // This is where the "nearest park to me" sorting logic will be
-        console.log(type);
+        // Sort by distance from user
+        if (!this.locationEnabled) {
+          alert("Allow us to use your current location.");
+        } else {
+          this.currentParksList.length
+            ? this.currentParksList.sort((a, b) => {
+                return a.distanceFromUser - b.distanceFromUser;
+              })
+            : this.parks.sort((a, b) => {
+                return a.distanceFromUser - b.distanceFromUser;
+              });
+        }
       }
     },
   },
@@ -140,6 +152,7 @@ export default {
   computed: {
     ...mapGetters({
       parks: "parks/parks",
+      usersCoords: "parks/getUserLocation",
     }),
 
     // Computed property that serves as the final list of parks that gets displayed in the UI to the user

@@ -62,7 +62,7 @@ export default {
     };
   },
   methods: {
-    async initSorting() {
+    initSorting() {
       const el = this.$refs.myDropDown.$el;
       if (el.classList.contains("hidden")) {
         this.menuClosed = !this.menuClosed;
@@ -87,7 +87,7 @@ export default {
           }
         );
       } else {
-        await el.animate(
+        el.animate(
           [
             // keyframes
             {
@@ -110,7 +110,7 @@ export default {
         );
         setTimeout(() => {
           this.menuClosed = !this.menuClosed;
-        }, 1000);
+        }, 999);
       }
     },
   },
